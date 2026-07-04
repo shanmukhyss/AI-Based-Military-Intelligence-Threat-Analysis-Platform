@@ -1,0 +1,31 @@
+.main {
+    background-color: #0e1117;
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.metric-card {
+    background: #1c1f26;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #2c313c;
+    text-align: center;
+}
+
+.metric-title {
+    color: #B0B3B8;
+    font-size:16px;
+}
+
+.metric-value {
+    color:#00E676;
+    font-size:32px;
+    font-weight:bold;
+}
+
+h1,h2,h3{
+    color:white;
+}

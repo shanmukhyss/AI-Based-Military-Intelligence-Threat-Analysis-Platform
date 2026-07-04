@@ -1,0 +1,15 @@
+streamlit
+pandas
+numpy
+plotly
+scikit-learn
+joblib
+matplotlib
+prophet
+google-generativeai
+python-dotenv
+streamlit-folium
+folium
+kagglehub
+setuptools
+wheel

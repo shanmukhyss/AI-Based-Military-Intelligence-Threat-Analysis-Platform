@@ -1,0 +1,15 @@
+# Dataset
+data/globalterrorismdb_0718dist.csv
+
+# Trained Models
+models/*.pkl
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+
+# Secrets
+.env
