@@ -105,10 +105,19 @@ X_train, X_test, y_train, y_test = train_test_split(
 # MODEL
 # ==========================================================
 
-print("\nTraining Threat Model...\n")
+# ==========================================================
+# MODEL
+# ==========================================================
+
+print("\nTraining Optimized Threat Model...\n")
 
 model = RandomForestClassifier(
-    n_estimators=300,
+    n_estimators=150,
+    max_depth=12,
+    min_samples_split=5,
+    min_samples_leaf=2,
+    max_features="sqrt",
+    bootstrap=True,
     random_state=42,
     n_jobs=-1
 )
@@ -144,7 +153,8 @@ os.makedirs("models", exist_ok=True)
 
 joblib.dump(
     model,
-    "models/threat_model.pkl"
+    "models/threat_model.pkl",
+    compress=("xz", 3)
 )
 
 joblib.dump(

@@ -49,11 +49,8 @@ print(f"Dataset Shape : {df.shape}")
 feature_encoders = {}
 
 for col in features:
-
     encoder = LabelEncoder()
-
     df[col] = encoder.fit_transform(df[col])
-
     feature_encoders[col] = encoder
 
 # ==========================================================
@@ -61,7 +58,6 @@ for col in features:
 # ==========================================================
 
 target_encoder = LabelEncoder()
-
 df[target] = target_encoder.fit_transform(df[target])
 
 # ==========================================================
@@ -69,7 +65,6 @@ df[target] = target_encoder.fit_transform(df[target])
 # ==========================================================
 
 X = df[features]
-
 y = df[target]
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -87,11 +82,15 @@ print(f"Testing Samples  : {len(X_test)}")
 # Train Model
 # ==========================================================
 
-print("\nTraining Random Forest...\n")
+print("\nTraining Optimized Random Forest...\n")
 
 model = RandomForestClassifier(
-    n_estimators=300,
-    max_depth=20,
+    n_estimators=100,
+    max_depth=12,
+    min_samples_split=5,
+    min_samples_leaf=2,
+    max_features="sqrt",
+    bootstrap=True,
     random_state=42,
     n_jobs=-1
 )
@@ -124,7 +123,8 @@ os.makedirs("models", exist_ok=True)
 
 joblib.dump(
     model,
-    "models/attack_model.pkl"
+    "models/attack_model.pkl",
+    compress=("xz", 3)
 )
 
 joblib.dump(
@@ -141,3 +141,13 @@ print("\nModel Saved Successfully!")
 print("models/attack_model.pkl")
 print("models/feature_encoders.pkl")
 print("models/target_encoder.pkl")
+
+# ==========================================================
+# Show Model Size
+# ==========================================================
+
+size_mb = os.path.getsize("models/attack_model.pkl") / (1024 * 1024)
+
+print("=" * 70)
+print(f"Model Size : {size_mb:.2f} MB")
+print("=" * 70)
